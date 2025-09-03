@@ -1,0 +1,37 @@
+<%- include("partials/header.ejs") %>
+
+  <div class="container ">
+    <div class="card shadow-lg p-3 bg-dark text-light rounded ">
+      <h2 class="text-center mb-2">Create a New Blog Post</h2>
+      <form action="/upload" method="POST" enctype="multipart/form-data">
+
+        <!-- Title -->
+        <div class="mb-2">
+          <label for="title" class="form-label">Blog Title</label>
+          <input type="text" class="form-control bg-white text-dark" id="title" name="title"
+            placeholder="Enter blog title" required>
+        </div>
+
+        <!-- Blog Content -->
+        <div class="mb-2">
+          <label for="content" class="form-label">Blog Content</label>
+          <textarea class="form-control bg-white text-dark" id="content" name="content" rows="3"
+            placeholder="Write your blog here..." required></textarea>
+        </div>
+
+        <!-- File Upload -->
+        <div class="mb-2">
+          <label for="file" class="form-label fw-bold">Upload a file (optional)</label>
+          <input class="form-control" type="file" id="file" name="myfile">
+        </div>
+
+        <div class="d-grid">
+          <button type="submit" class="btn btn-primary btn-lg rounded-pill">Publish</button>
+        </div>
+    </div>
+
+    </form>
+  </div>
+  </div>
+
+  <%- include("partials/footer.ejs") %>

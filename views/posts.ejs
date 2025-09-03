@@ -1,0 +1,21 @@
+<%- include("partials/header.ejs") %>
+
+
+    <div class="main-wrapper scroll-area ">
+        <div class="grid-container">
+            <% for(var i=0;i<files.length;i++){ %>
+            <div class="custom-card">
+                <a href="/article/<%= files[i] %>"><%= files[i] %></a>
+            </div>
+            <% } %>
+            <!-- Add card -->
+            <div class="custom-card add-card">
+                <a href="/write">+</a>
+            </div>
+
+        </div>
+    </div>
+
+
+
+ <%- include("partials/footer.ejs") %>

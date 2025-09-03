@@ -1,0 +1,3 @@
+Delete  func
+login func
+style article

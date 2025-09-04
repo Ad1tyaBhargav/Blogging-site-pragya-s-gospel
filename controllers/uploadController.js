@@ -1,9 +1,11 @@
-import { convertUploadedDocx } from "../utils/fileUtils.js";
+import { convertUploadedDocx, saveBodyAsJson} from "../utils/fileUtils.js";
 
 export const handleUpload = async(req, res) => {
+  console.log(req.body)
   try {
-    const nameWithoutExt = req.file.originalname.slice(0, -5);
-    const html = await convertUploadedDocx(req.file, `./uploads/${nameWithoutExt}.html`);
+    const nameWithoutExt = req.body.title;
+    await convertUploadedDocx(req.file, `./uploads/${nameWithoutExt}.html`);
+    await saveBodyAsJson(req.body ,"./uploads" )
 
     // Option 1: return as JSON (for AJAX frontend)
    res.redirect("/post")

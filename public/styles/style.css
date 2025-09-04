@@ -23,6 +23,7 @@ body {
   text-align: center;
   min-height: 200px;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
@@ -61,6 +62,10 @@ body {
 .article-custom{
   overflow-y: auto;
   height: 410px;
+  color: white;
+}
+
+.summary{
   color: white;
 }
 

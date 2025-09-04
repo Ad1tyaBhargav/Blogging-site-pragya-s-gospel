@@ -24,18 +24,49 @@ export async function convertUploadedDocx(file, outputPath) {
       console.log(`✅ HTML saved at: ${outputPath}`);
     }
 
-    return html;
   } catch (err) {
     console.error("❌ Error converting DOCX:", err);
     throw err;
   }
 }
 
-
-export function getFilesArray(folderPath) {
+export async function saveBodyAsJson(reqBody, folder) {
   try {
-    const files = fs.readdirSync(folderPath);
-    return files.filter(file => fs.lstatSync(path.join(folderPath, file)).isFile());
+
+    // File name with timestamp
+    const fileName = `${reqBody.title}.json`;
+    const filePath = path.join(folder, fileName);
+
+    // Write JSON
+    fs.writeFileSync(filePath, JSON.stringify(reqBody, null, 2));
+
+    console.log("✅ JSON file saved at:", filePath);
+  } catch (err) {
+    console.error("❌ Error saving JSON:", err);
+    throw err;
+  }
+}
+
+export function getHTMLfiles(folderPath) {
+  try {
+    return fs.readdirSync(folderPath)
+      .filter(file => path.extname(file).toLowerCase() === ".html")
+  } catch (err) {
+    console.error("❌ Error reading folder:", err);
+    return [];
+  }
+}
+
+export function getJSONfiles(folderPath) {
+  try {
+    const files= fs.readdirSync(folderPath)
+      .filter(file => path.extname(file).toLowerCase() === ".json");
+
+      return files.map(file => {
+    const filePath = path.join(folderPath, file);
+    const content = JSON.parse(fs.readFileSync(filePath, "utf-8"));
+    return content.content; // replace filename with parsed object
+  });
   } catch (err) {
     console.error("❌ Error reading folder:", err);
     return [];

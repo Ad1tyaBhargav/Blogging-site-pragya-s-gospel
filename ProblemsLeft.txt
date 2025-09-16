@@ -1,3 +1,7 @@
-Delete  func
-login func
-style article
+- Delete  func
+- login func
+- style article
+- Pattern.monster
+- public/private func
+- edit
+- Single JSON to be  sent in post.ejs instead of whole  fileArray and remove it  completely no needed

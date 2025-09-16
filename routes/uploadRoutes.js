@@ -7,14 +7,28 @@ const router = express.Router();
 
 // File filter
 const fileFilter = (req, file, cb) => {
-  const ext = path.extname(file.originalname).toLowerCase();
-  if (
-    ext === ".docx" &&
-    file.mimetype === "application/vnd.openxmlformats-officedocument.wordprocessingml.document"
-  ) {
-    cb(null, true);
+ if (file.fieldname === "myfile") {
+    const ext = path.extname(file.originalname).toLowerCase();
+    if (
+      ext === ".docx" &&
+      file.mimetype === "application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+    ) {
+      cb(null, true);
+    } else {
+      cb(new Error("Only .docx files are allowed for myfile!"), false);
+    }
+  } else if (file.fieldname === "myImage") {
+    const ext = path.extname(file.originalname).toLowerCase();
+    if (
+      ext === ".png" &&
+      file.mimetype === "image/png"
+    ) {
+      cb(null, true);
+    } else {
+      cb(new Error("Only .png images are allowed for myImage!"), false);
+    }
   } else {
-    cb(new Error("Only .docx files are allowed!"), false);
+    cb(new Error("Unexpected field!"), false);
   }
 };
 
@@ -25,6 +39,9 @@ const upload = multer({
 });
 
 // Route
-router.post("/", upload.single("myfile"), handleUpload);
+router.post("/", upload.fields([
+    { name: "myfile", maxCount: 2 },
+    { name: "myImage", maxCount: 2 }
+]), handleUpload);
 
 export default router;

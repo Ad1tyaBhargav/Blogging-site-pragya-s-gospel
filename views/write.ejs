@@ -12,17 +12,20 @@
             placeholder="Enter blog title" required>
         </div>
 
-        <!-- Blog Content -->
+        <!-- Blog summary -->
         <div class="mb-2">
-          <label for="content" class="form-label">Blog Content</label>
-          <textarea class="form-control bg-white text-dark" id="content" name="content" rows="3"
+          <label for="summary" class="form-label">Blog summary</label>
+          <textarea class="form-control bg-white text-dark" id="summary" name="summary" rows="3"
             placeholder="Write summary of your blog here..." required></textarea>
         </div>
 
         <!-- File Upload -->
         <div class="mb-2">
           <label for="file" class="form-label fw-bold">Upload a file (optional)</label>
-          <input class="form-control" type="file" id="file" name="myfile">
+          <div style="display: flex; gap: 10px;">
+            <input class="form-control" type="file" id="file" name="myfile" style="width: 50%;">
+            <input class="form-control" type="file" id="image" name="myImage" style="width: 50%;">
+          </div>
         </div>
 
         <div class="d-grid">

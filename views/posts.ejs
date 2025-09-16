@@ -5,8 +5,8 @@
         <div class="grid-container">
             <% for(var i=0;i<files.length;i++){ %>
             <div class="custom-card">
-                <a href="/article/<%= files[i] %>"><%= files[i].slice(0,-5) %></a>
-                <p class="summary"> <%= summary[i] %> </p>
+                <a href="/article/<%= files[i].title %>"><%= files[i].title %></a>
+                <p class="summary"> <%= files[i].summary %> </p>
             </div>
             <% } %>
             <!-- Add card -->
